@@ -5,8 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.enterprise.event.Observes;
-import javax.management.InstanceNotFoundException;
-import javax.management.MBeanRegistrationException;
+
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import javax.ws.rs.GET;
@@ -33,44 +32,44 @@ public class GreetingResource {
 
 		MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
 		
-		ObjectName name = new ObjectName("debezium:00=dbserver1,name=ConnectorMetrics");
+		ObjectName name = new ObjectName("debezium:m1=dbserver1");
 		ConnectorMetrics bean = new ConnectorMetrics();
 		mbs.registerMBean(bean, name);
 		names.add(name);
 		
-		name = new ObjectName("debezium:00=dbserver1,01=task-1,name=TaskMetrics");
+		name = new ObjectName("debezium:m1=dbserver1,m2=task-1");
 		TaskMetrics bean2 = new TaskMetrics();
 		mbs.registerMBean(bean2, name);
 		names.add(name);
 		
-		name = new ObjectName("debezium:00=dbserver1,01=task-1,02=schema-history,name=Partition 1");
+		name = new ObjectName("debezium:m1=dbserver1,m2=task-1,m3=schema-history,m4=Partition 1");
 		PartitionHistoryMetrics bean3 = new PartitionHistoryMetrics();
 		mbs.registerMBean(bean3, name);
 		names.add(name);
 		
-		name = new ObjectName("debezium:00=dbserver1,01=task-1,02=schema-history,name=Partition 2");
-		PartitionHistoryMetrics bean4 = new PartitionHistoryMetrics();
-		mbs.registerMBean(bean4, name);
-		names.add(name);
-
-		name = new ObjectName("debezium:00=dbserver1,01=task-1,02=snapshotting,name=Partition 1");
+		name = new ObjectName("debezium:m1=dbserver1,m2=task-1,m3=snapshotting,m4=Partition 1");
 		PartitionSnapshotMetrics bean5 = new PartitionSnapshotMetrics();
 		mbs.registerMBean(bean5, name);
 		names.add(name);
 		
-		name = new ObjectName("debezium:00=dbserver1,01=task-1,02=snapshotting,name=Partition 2");
+		name = new ObjectName("debezium:m1=dbserver1,m2=task-1,m3=snapshotting,m4=Partition 2");
 		PartitionSnapshotMetrics bean6 = new PartitionSnapshotMetrics();
 		mbs.registerMBean(bean6, name);
 		names.add(name);
 
-		name = new ObjectName("debezium:00=dbserver1,01=task-1,02=streaming,name=Partition 1");
+		name = new ObjectName("debezium:m1=dbserver1,m2=task-1,m3=streaming,m4=Partition 1");
 		PartitionStreamingMetrics bean7 = new PartitionStreamingMetrics();
 		mbs.registerMBean(bean7, name);
 		names.add(name);
 		
-		name = new ObjectName("debezium:00=dbserver1,01=task-1,02=streaming,name=Partition 2");
+		name = new ObjectName("debezium:m1=dbserver1,m2=task-1,m3=streaming,m4=Partition 3");
 		PartitionStreamingMetrics bean8 = new PartitionStreamingMetrics();
 		mbs.registerMBean(bean8, name);
+		names.add(name);
+
+		name = new ObjectName("debezium:m1=dbserver1,m2=task-2");
+		TaskMetrics bean9 = new TaskMetrics();
+		mbs.registerMBean(bean9, name);
 		names.add(name);
 	}
 	
